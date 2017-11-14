@@ -19,6 +19,7 @@ class MyWindow(Gtk.Window):
         self.button2 = Gtk.Button(label="Click here")
         self.button2.connect("clicked", self.on_button2_clicked)
         self.box.pack_start(self.button2, True, True, 0)
+        
     def on_button1_clicked(self, window):
         print "Button 1"
     def on_button2_clicked(self, window):
