@@ -19,8 +19,11 @@ class Handler:
                         }
         self.builder.connect_signals(self.handlers)
         self.window = self.builder.get_object("main")
-        self.treeView = self.builder.get_object("treeView")
+        # self.treeView = self.builder.get_object("treeView")
+        self.treeView = Gtk.TreeView()
         self.add_button = self.builder.get_object("add")
+        self.grid = self.builder.get_object("grid")
+
         self.model = Gtk.ListStore(str)
         self.model.append(["Benjamin"])
         self.model.append(["Charles"])
@@ -37,6 +40,11 @@ class Handler:
         column = Gtk.TreeViewColumn("Title", cellRenderer, text=0)
         self.treeView.append_column(column)
 
+        self.scrollable_treeView = Gtk.ScrolledWindow()
+        self.scrollable_treeView.set_vexpand(True)
+        self.grid.attach(self.scrollable_treeView,1,1,1,1)
+
+        self.scrollable_treeView.add(self.treeView)
         self.window.show_all()
         self.window.resize(300,300)
     def on_add_clicked(self, button):
